@@ -11,27 +11,11 @@ export default class Navbar extends Component {
                 </button>
                 <div className="collapse navbar-collapse" id="collapsibleNavId">
                     <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
-                        <li className="nav-item active">
-                            <Link className="nav-link" to="/">Home <span className="sr-only">(current)</span></Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/todos">Todos</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/blog">Blog</Link>
-                        </li>
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" href="/" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Movies <span><i className="fa fa-video-camera"></i></span></a>
                             <div className="dropdown-menu" aria-labelledby="dropdownId">
-                                <Link className="dropdown-item" to="/movies">Movies</Link>
+                                <Link className="dropdown-item" to="/">Movies</Link>
                                 <Link className="dropdown-item" to="/watched">Watch List</Link>
-                            </div>
-                        </li>
-                        <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle" href="/" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Store <span><i className="fa fa-shopping-cart"></i></span> <span className="badge badge-dark">{this.props.cart ? this.props.cart.length : 0}</span></a>
-                            <div className="dropdown-menu" aria-labelledby="dropdownId">
-                                <Link className="dropdown-item" to="/store">Products</Link>
-                                <Link className="dropdown-item" to="/cart">Cart</Link>
                             </div>
                         </li>
                     </ul>

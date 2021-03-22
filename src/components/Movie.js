@@ -15,7 +15,7 @@ export default class Movie extends Component {
         }
 
         return (
-            <div className="col-md-4">
+            <div>
                 <div className="card-deck">
                     <div className="card" style={{ marginTop: '25px' }}>
                         <img className="card-img-top" style={{ maxWidth: '141px', margin: '5px auto' }} src={`https://image.tmdb.org/t/p/w94_and_h141_bestv2${movie.poster_path}`} alt={movie.original_title} />

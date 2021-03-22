@@ -1,67 +1,61 @@
 import React, { Component } from 'react'
-import UserList from '../components/UserList';
-import firebase from '../components/Firebase';
+import axios from 'axios';
+import MovieList from '../components/MovieList';
+import firebase from '../components/Firebase'
 
-export default class Home extends Component {
+export default class Movies extends Component {
     constructor() {
         super();
         this.state = {
-            users: [],
-            formName: '',
-            formEmail: '',
-            formLocation: ''
+            movies: []
         }
-        this.db = firebase.firestore();
+    this.db = firebase.firestore();
     }
-
-        componentDidMount() {
-            this.db.collection('users').get().then(querySnapshot => {
-                let data = [];
-                querySnapshot.forEach(doc => {
-                    data.push(doc.data())
-                })
-                
-                this.setState({
-                    users: data
-                })
-            })
-        }
 
     handleSubmit = e => {
         e.preventDefault();
+        const movie = e.target.title.value;
+        const api_key = process.env.REACT_APP_MOVIE_API_KEY;
+        let movieData = [];
 
-        const user = {
-            firstName: e.target.firstName.value,
-            lastName: e.target.lastName.value,
-            location: e.target.location.value
+        axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${api_key}&language=en-US&query=${movie}&include_adult=false`)
+            .then(res => {
+                movieData.push(res.data.results[0])
+                this.setState({
+                    movies: movieData
+                })
+            })
         }
-
-        this.db.collection('users').add(user)
-        .then(docRef => console.log("User created successfully."))
-        .catch(err => console.log(err));
+        
+    handleClick = movie => {
+        const movieToAdd = {
+            id: this.state.movies[0].id,
+            poster_path: this.state.movies[0].poster_path,
+            original_title: this.state.movies[0].original_title,
+            overview: this.state.movies[0].overview,
+            release_date: this.state.movies[0].release_date,
+            vote_average: this.state.movies[0].vote_average,
+            watched: false
+        }
+        this.db.collection('movies').doc(this.state.movies[0].original_title).set(movieToAdd)
+            .then(docRef => console.log("Movie added successfully."))
+            .catch(err => console.log(err));
     }
 
     render() {
+        const movies = this.state.movies;
+
         return (
-            <div>
-                <div className="row">
-                    <div className="col-md-4">
-                        <form action="" style={{ marginTop: '25px' }} onSubmit={this.handleSubmit}>
-                            <div className="form-group">
-                                <input type="text" className="form-control" defaultValue={this.state.formFirstName} name="firstName" placeholder="First Name" />
-                            </div>
-                            <div className="form-group">
-                                <input type="text" className="form-control" defaultValue={this.state.formLastName} name="lastName" placeholder="Last Name" />
-                            </div>
-                            <div className="form-group">
-                                <input type="text" className="form-control" defaultValue={this.state.formLocation} name="location" placeholder="Location" />
-                            </div>
-                            <input type="submit" className="btn btn-success" value="Submit"/>
-                        </form>
+            <div className='col-md-6 offset-3'>
+                <form className="form-inline" style={{ margin: '25px 0' }} onSubmit={this.handleSubmit}>
+                    <div className="form-group">
+                        <input type="text" name="title" className="form-control" placeholder="Enter a Movie Title" style={{ marginRight: '10px' }} />
+                        <input type="submit" value="Submit" className="btn btn-warning" />
                     </div>
+                </form>
+                <div className="row" style={{ margin: '25px 0' }}>
+                    <MovieList movies={movies} handleClick={this.handleClick} />
                 </div>
-                  
-                <UserList users={this.state.users} />
             </div>
         )
     }
