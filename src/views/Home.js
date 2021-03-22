@@ -53,9 +53,6 @@ export default class Home extends Component {
                             <div className="form-group">
                                 <input type="text" className="form-control" defaultValue={this.state.formLastName} name="lastName" placeholder="Last Name" />
                             </div>
-                            {/* <div className="form-group">
-                                <input type="text" className="form-control" defaultValue={this.state.formEmail} name="email" placeholder="Email" />
-                            </div> */}
                             <div className="form-group">
                                 <input type="text" className="form-control" defaultValue={this.state.formLocation} name="location" placeholder="Location" />
                             </div>
@@ -69,14 +66,3 @@ export default class Home extends Component {
         )
     }
 }
-
-// CREATE A FORM
-// - name
-// - email
-// - location
-
-// UsersList
-// - Loop over list of users created from form
-
-// User
-// - Render each individual

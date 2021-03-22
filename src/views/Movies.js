@@ -15,9 +15,10 @@ export default class Movies extends Component {
     handleSubmit = e => {
         e.preventDefault();
         const movie = e.target.title.value;
+        const api_key = process.env.REACT_APP_MOVIE_API_KEY;
         let movieData = [];
 
-        axios.get(`https://api.themoviedb.org/3/search/movie?api_key=ae85a890fd34ea7e0070f5d9ed8e27bd&language=en-US&query=${movie}&include_adult=false`)
+        axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${api_key}&language=en-US&query=${movie}&include_adult=false`)
             .then(res => {
                 movieData.push(res.data.results[0])
                 this.setState({
@@ -28,6 +29,7 @@ export default class Movies extends Component {
         
     handleClick = movie => {
         const movieToAdd = {
+            id: this.state.movies[0].id,
             poster_path: this.state.movies[0].poster_path,
             original_title: this.state.movies[0].original_title,
             overview: this.state.movies[0].overview,

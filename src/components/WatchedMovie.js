@@ -11,7 +11,6 @@ export default class WatchedMovie extends Component {
             </div>
         } else {
             buttonStyle = <div style={{ margin: '5px 0' }}>
-                {/* <button className="add-to-cart btn btn-success btn-block" onClick={() => this.props.addItem(product)}>Add to cart</button> */}
                 <button className="add-to-cart btn btn-success btn-block" onClick={() => this.props.handleClick(movie)} >Mark as Viewed</button>
             </div>
         }
@@ -27,7 +26,7 @@ export default class WatchedMovie extends Component {
                             <p>
                                 <a data-toggle="collapse" href="#expand" role="button" aria-expanded="false" aria-controls="collapseExample">Description:</a>
                             </p>
-                            <div class="collapse" id="expand">
+                            <div className="collapse" id="expand">
                                     {movie.overview}
                             </div>
                             <p className="card-text"><b>Release Year: </b>{movie.release_date.substr(0, 4)}</p>

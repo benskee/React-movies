@@ -5,7 +5,7 @@ export default class WatchedList extends Component {
     render() {
         return (
             <div className="row">
-                {this.props.movies.map(movie => <WatchedMovie movieProp={movie} key={movie.id} handleClick={this.props.handleClick}/>)}
+                {this.props.movies.map((movie, index) => <WatchedMovie movieProp={movie} key={movie.id} handleClick={this.props.handleClick}/>)}
             </div>
         )
     }

@@ -30,9 +30,7 @@ export default class Cart extends Component {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {/* Cart items */}
                                     <CartList cart={this.props.cart} removeItem={this.props.removeItem} addItem={this.props.addItem} />
-                                    {/* Cart items */}
                                     <tr>
                                         <td></td>
                                         <td></td>

@@ -3,6 +3,9 @@ import React, { Component } from 'react'
 export default class CartItem extends Component {
     render() {
         const product = this.props.item;
+        if (product.image) {
+            product.image = product.image.replace("fakestoreapi.com", "fakestoreapi.herokuapp.com")
+        };
 
         return (
             <tr>
@@ -10,7 +13,6 @@ export default class CartItem extends Component {
                 <td>{product.title}</td>
                 <td>In stock</td>
                 <td style={{textAlign: 'center'}}>{this.props.numInCart}</td>
-                {/* <td><input className="form-control" type="text" defaultValue={this.props.numInCart} style={{width: '20%', margin: '0 auto'}} name="quantity" /></td> */}
                 <td className="text-right">${product.price.toFixed(2)}</td>
                 <td className="text-right">
                     <button className="btn btn-sm btn-danger" onClick={(e) => this.props.removeItem(product)}>

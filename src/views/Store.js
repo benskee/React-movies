@@ -12,7 +12,7 @@ export default class Store extends Component {
     }
 
     componentDidMount = async () => {
-        await axios.get('https://fakestoreapi.com/products')
+        await axios.get('https://fakestoreapi.herokuapp.com/products')
             .then(res => this.setState({ products: res.data }))
     }
 

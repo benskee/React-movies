@@ -4,7 +4,6 @@ import { Switch, Route } from 'react-router-dom';
 import Home from './views/Home';
 import Todos from './views/Todos';
 import Blog from './views/Blog';
-import Racer from './views/Racer';
 import Store from './views/Store';
 import ShopSingle from './views/ShopSingle';
 import Cart from './views/Cart';
@@ -30,8 +29,6 @@ export default class App extends Component {
   removeItem = (item) => {
     let cart = [...this.state.cart];
     
-    // for (let i = 0; i < num; i++) {
-
       let index = cart.indexOf(item);
 
       if (index !== -1) {
@@ -41,7 +38,6 @@ export default class App extends Component {
           cart: cart
         })
       }
-    // }
   }
 
   render() {
@@ -56,11 +52,10 @@ export default class App extends Component {
             <Route exact path='/' render={() => <Home />} />
             <Route exact path='/todos' render={() => <Todos />} />
             <Route exact path='/blog' render={() => <Blog />} />
-            <Route exact path='/racer' render={() => <Racer />} />
             <Route exact path='/movies' render={() => <Movies />} />
             <Route exact path='/watched' render={() => <Watched />} />
             <Route exact path='/store' render={() => <Store cart={this.state.cart} addItem={this.addItem} />} />
-            <Route exact path='/store/:id' render={({match}) => <ShopSingle match={match} />} />
+            <Route exact path='/store/:id' render={({ match }) => <ShopSingle match={match} cart={this.state.cart} addItem={this.addItem} />} />
             <Route exact path='/cart' render={() => <Cart cart={this.state.cart} addItem={this.addItem} removeItem={this.removeItem} />} />
           </Switch>
         </main>

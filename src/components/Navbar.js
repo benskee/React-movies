@@ -5,7 +5,7 @@ export default class Navbar extends Component {
     render() {
         return (
             <nav className="navbar navbar-expand-sm navbar-light bg-light">
-                <Link className="navbar-brand" to="/">Navbar</Link>
+                <Link className="navbar-brand" to="/">MOVIES+</Link>
                 <button className="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
@@ -19,9 +19,6 @@ export default class Navbar extends Component {
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to="/blog">Blog</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/racer">F1 Racer</Link>
                         </li>
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" href="/" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Movies <span><i className="fa fa-video-camera"></i></span></a>
